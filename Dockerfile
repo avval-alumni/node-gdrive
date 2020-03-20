@@ -1,4 +1,4 @@
-FROM node:10 AS builder
+FROM node:13.10 AS builder
 
 COPY package.json yarn.lock tsconfig.json rollup.config.js /app/
 WORKDIR /app
@@ -8,7 +8,7 @@ COPY src/ /app/src
 COPY cli/ /app/cli
 RUN yarn build
 
-FROM node:10
+FROM node:13.10
 
 ENV TOKEN_FILE=/app/secrets/token.json
 ENV CREDENTIALS_FILE=/app/secrets/credentials.json
